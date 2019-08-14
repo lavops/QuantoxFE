@@ -1,0 +1,31 @@
+<div class="container">
+
+  <div class="row row-offcanvas row-offcanvas-right">
+
+    <div class="col-12 col-md-12">
+
+      <div class="row">
+        <div class="card col" style="width: 18rem;">
+          <img src="" class="card-img-top" alt="">
+          <div class="card-body">
+            <h5 class="card-title">{{profile.name}}</h5>
+            <p class="card-text">{{profile.email}}</p>
+            <a class="btn btn-outline-success btn-sm" routerLink="/settings">Settings</a>
+          </div>
+        </div>
+
+        <div class="col-6 col-lg-8">
+
+          <app-post-tweet></app-post-tweet>
+
+          <!-- Kako ovde da napravim posebnu komponentu za svaki post? -->
+          <ul *ngFor="let obj of profile.tweets">
+            <h2>{{profile.name}}</h2>
+            <p>{{obj.text}}</p>
+            <p><a class="btn btn-secondary" href="#" role="button">Like</a></p>
+          </ul>
+        </div><!--/span-->
+      </div><!--/row-->
+    </div><!--/span-->
+  </div><!--/row-->
+</div>
