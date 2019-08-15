@@ -67,6 +67,15 @@ export class JarwisService {
     });
   }
 
+  getUser(data) {
+    const header = new HttpHeaders({
+      Authorization: 'Bearer ' + this.Token.get()
+    });
+    return this.http.get(`${this.baseUrl}/userID/${data}`, {
+      headers: header
+    });
+  }
+
   addFried(data) {
     const header = new HttpHeaders({
       Authorization: 'Bearer ' + this.Token.get()

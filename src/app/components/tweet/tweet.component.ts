@@ -19,7 +19,7 @@ export class TweetComponent implements OnInit {
   };
 
   public comment = {
-    tweet_id : this.tweet.tweet_id,
+    tweet_id : null,
     text : null,
   };
 
@@ -30,6 +30,7 @@ export class TweetComponent implements OnInit {
   ) { }
 
   onSubmit() {
+    this.comment.tweet_id = this.tweet.id;
     this.Jarwis.postComment(this.comment).subscribe(
       data => this.handleCommentResponse(data),
       error => this.handleError(error)
@@ -44,11 +45,11 @@ export class TweetComponent implements OnInit {
   }
 
   handleCommentResponse(data) {
-    console.log(data);
+    this.ngOnInit();
   }
 
   handleResponse(data) {
-    console.log(data);
+    this.data.comments = data;
   }
 
   handleError(error) {
