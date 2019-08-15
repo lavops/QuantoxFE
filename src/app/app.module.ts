@@ -16,6 +16,9 @@ import {BeforeLoginService} from './services/before-login.service';
 import { PostTweetComponent } from './components/post-tweet/post-tweet.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { UserComponent } from './components/user/user.component';
+import { TweetComponent } from './components/tweet/tweet.component';
+import { CommentComponent } from './components/comment/comment.component';
+import { PostCommentComponent } from './components/post-comment/post-comment.component';
 
 
 
@@ -28,7 +31,10 @@ import { UserComponent } from './components/user/user.component';
     ProfileComponent,
     PostTweetComponent,
     SettingsComponent,
-    UserComponent
+    UserComponent,
+    TweetComponent,
+    CommentComponent,
+    PostCommentComponent
   ],
   imports: [
     BrowserModule,

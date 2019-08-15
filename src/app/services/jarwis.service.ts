@@ -84,4 +84,22 @@ export class JarwisService {
       headers: header
     });
   }
+
+  getComments(data) {
+    const header = new HttpHeaders({
+      Authorization: 'Bearer ' + this.Token.get()
+    });
+    return this.http.get(`${this.baseUrl}/tweet/${data}`, {
+      headers: header
+    });
+  }
+
+  postComment(data) {
+    const header = new HttpHeaders({
+      Authorization: 'Bearer ' + this.Token.get()
+    });
+    return this.http.post(`${this.baseUrl}/postComment`, data, {
+      headers: header
+    });
+  }
 }

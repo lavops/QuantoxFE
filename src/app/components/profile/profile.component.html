@@ -24,9 +24,7 @@
 
           <!-- Kako ovde da napravim posebnu komponentu za svaki post? -->
           <ul *ngFor="let obj of profile.tweets">
-            <h2>{{profile.name}}</h2>
-            <p>{{obj.text}}</p>
-            <p><a class="btn btn-secondary" href="#" role="button">Like</a></p>
+            <app-tweet [tweet]="obj" [name]="profile.name"></app-tweet>
           </ul>
         </div><!--/span-->
       </div><!--/row-->
