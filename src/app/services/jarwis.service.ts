@@ -75,4 +75,13 @@ export class JarwisService {
       headers: header
     });
   }
+
+  deleteFriend(data) {
+    const header = new HttpHeaders({
+      Authorization: 'Bearer ' + this.Token.get()
+    });
+    return this.http.post(`${this.baseUrl}/deleteFriend`, data, {
+      headers: header
+    });
+  }
 }

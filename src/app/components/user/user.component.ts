@@ -37,7 +37,10 @@ export class UserComponent implements OnInit {
   }
 
   onSubmitDelete() {
-    console.log('Delete friend');
+    this.Jarwis.deleteFriend(this.user).subscribe(
+      data => this.handleResponse(data),
+      error => this.handleError(error)
+    );
   }
 
   ngOnInit() {
