@@ -67,4 +67,12 @@ export class JarwisService {
     });
   }
 
+  addFried(data) {
+    const header = new HttpHeaders({
+      Authorization: 'Bearer ' + this.Token.get()
+    });
+    return this.http.post(`${this.baseUrl}/addFriend`, data, {
+      headers: header
+    });
+  }
 }

@@ -35,6 +35,7 @@ export class ProfileComponent implements OnInit {
     this.profile.username = data.user.username;
     this.profile.name = data.user.name;
     this.profile.email = data.user.email;
+    this.profile.bio = data.user.bio;
     this.profile.tweets = data.tweets;
     this.profile.isPrivate = data.user.isPrivate;
   }

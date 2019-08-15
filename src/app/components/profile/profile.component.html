@@ -12,6 +12,8 @@
             <p *ngIf="profile.isPrivate">( Private profile )</p>
             <p *ngIf="!profile.isPrivate">( Public profile )</p>
             <p class="card-text">{{profile.email}}</p>
+
+            <p class="card-text">Bio: <br> {{profile.bio}}</p>
             <a class="btn btn-outline-success btn-sm" routerLink="/settings">Settings</a>
           </div>
         </div>
