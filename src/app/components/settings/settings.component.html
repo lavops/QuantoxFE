@@ -38,6 +38,13 @@
           </div>
 
           <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="inputIsPrivate1">isPrivate</label>
+            <div class="offset-1">
+              <input type="checkbox" class="form-check-input" id="inputIsPrivate1" name="isPrivate" [(ngModel)]="updateUser.isPrivate">
+            </div>
+          </div>
+
+          <div class="form-group row">
             <div class="col-sm-10 offset-2">
               <button type="submit" class="btn btn-primary" [disabled]="!updateForm.valid">Save</button>
             </div>

@@ -12,6 +12,7 @@ export class SettingsComponent implements OnInit {
   public updateUser = {
     name : null,
     bio : null,
+    isPrivate: false,
     password : null,
     password_confirmation: null
   };
@@ -24,6 +25,7 @@ export class SettingsComponent implements OnInit {
   ) { }
 
   onSubmit() {
+    // console.log(this.updateUser)
     this.Jarwis.updateProfile(this.updateUser).subscribe(
       data => this.handleResponse(data),
       error => this.handleError(error)
@@ -34,12 +36,11 @@ export class SettingsComponent implements OnInit {
     this.Jarwis.getSettingsData().subscribe(
       data => this.handleResponseGetSettingsData(data),
       error => this.handleError(error)
-
     );
   }
 
   handleResponse(data) {
-    console.log(data);
+    // console.log(data);
     this.router.navigateByUrl('/profile');
   }
 
@@ -47,6 +48,7 @@ export class SettingsComponent implements OnInit {
     // console.log(data);
     this.updateUser.name = data.name;
     this.updateUser.bio = data.bio;
+    this.updateUser.isPrivate = data.isPrivate;
   }
 
   handleError(error) {

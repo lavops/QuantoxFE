@@ -13,6 +13,7 @@ export class ProfileComponent implements OnInit {
     name : null,
     email : null,
     bio : null,
+    isPrivate : null,
     tweets : []
   };
 
@@ -30,11 +31,12 @@ export class ProfileComponent implements OnInit {
   }
 
   handleResponse(data) {
-    console.log(data);
+    // console.log(data);
     this.profile.username = data.user.username;
     this.profile.name = data.user.name;
     this.profile.email = data.user.email;
     this.profile.tweets = data.tweets;
+    this.profile.isPrivate = data.user.isPrivate;
   }
 
   handleError(error) {

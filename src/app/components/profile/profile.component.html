@@ -9,6 +9,8 @@
           <img src="" class="card-img-top" alt="">
           <div class="card-body">
             <h5 class="card-title">{{profile.name}}</h5>
+            <p *ngIf="profile.isPrivate">( Private profile )</p>
+            <p *ngIf="!profile.isPrivate">( Public profile )</p>
             <p class="card-text">{{profile.email}}</p>
             <a class="btn btn-outline-success btn-sm" routerLink="/settings">Settings</a>
           </div>
