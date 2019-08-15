@@ -6,6 +6,7 @@ import {ProfileComponent} from './components/profile/profile.component';
 import {BeforeLoginService} from './services/before-login.service';
 import {AfterLoginService} from './services/after-login.service';
 import {SettingsComponent} from './components/settings/settings.component';
+import {UserComponent} from './components/user/user.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,11 @@ const routes: Routes = [
   {
     path: 'settings',
     component: SettingsComponent,
+    canActivate: [AfterLoginService]
+  },
+  {
+    path: 'user/:username',
+    component: UserComponent,
     canActivate: [AfterLoginService]
   },
 ];

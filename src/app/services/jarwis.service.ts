@@ -58,4 +58,13 @@ export class JarwisService {
     });
   }
 
+  getUserInfo(data) {
+    const header = new HttpHeaders({
+      Authorization: 'Bearer ' + this.Token.get()
+    });
+    return this.http.get(`${this.baseUrl}/user/${data}`, {
+      headers: header
+    });
+  }
+
 }

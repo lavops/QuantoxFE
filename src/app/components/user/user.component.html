@@ -1,0 +1,31 @@
+<div class="container">
+
+  <div class="row row-offcanvas row-offcanvas-right">
+
+    <div class="col-12 col-md-12">
+
+      <div class="row">
+        <div class="card col" style="width: 18rem;">
+          <img src="" class="card-img-top" alt="">
+          <div class="card-body">
+            <h5 class="card-title">{{user.name}}</h5>
+            <p *ngIf="user.isPrivate">( Private profile )</p>
+            <p *ngIf="!user.isPrivate">( Public profile )</p>
+            <p class="card-text">{{user.bio}}</p>
+            <a class="btn btn-outline-success btn-sm" routerLink="/profile">Add Friend</a>
+          </div>
+        </div>
+
+        <div class="col-6 col-lg-8">
+
+          <!-- Kako ovde da napravim posebnu komponentu za svaki post? -->
+          <ul *ngFor="let obj of user.tweets">
+            <h2>{{user.name}}</h2>
+            <p>{{obj.text}}</p>
+            <p><a class="btn btn-secondary" href="#" role="button">Like</a></p>
+          </ul>
+        </div><!--/span-->
+      </div><!--/row-->
+    </div><!--/span-->
+  </div><!--/row-->
+</div>

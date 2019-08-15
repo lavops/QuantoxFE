@@ -15,6 +15,7 @@ import {AfterLoginService} from './services/after-login.service';
 import {BeforeLoginService} from './services/before-login.service';
 import { PostTweetComponent } from './components/post-tweet/post-tweet.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { UserComponent } from './components/user/user.component';
 
 
 
@@ -26,7 +27,8 @@ import { SettingsComponent } from './components/settings/settings.component';
     SignupComponent,
     ProfileComponent,
     PostTweetComponent,
-    SettingsComponent
+    SettingsComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
