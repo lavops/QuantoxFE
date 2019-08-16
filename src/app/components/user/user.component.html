@@ -1,34 +1,46 @@
-<div class="container">
+<div class="container justify-content-center">
 
-  <div class="row row-offcanvas row-offcanvas-right">
+  <div class="text-center">
 
-    <div class="col-12 col-md-12">
-
-      <div class="row">
-        <div class="card col" style="width: 18rem;">
-          <img src="" class="card-img-top" alt="">
-          <div class="card-body">
-            <h5 class="card-title">{{user.name}}</h5>
-            <p *ngIf="user.isPrivate">( Private profile )</p>
-            <p *ngIf="!user.isPrivate">( Public profile )</p>
-            <p class="card-text">{{user.bio}}</p>
-            <form (ngSubmit)="onSubmitAdd()" *ngIf="!user.isFriend">
-              <button type="submit" class="btn btn-outline-success btn-sm">Add Friend</button>
-            </form>
-            <form (ngSubmit)="onSubmitDelete()" *ngIf="user.isFriend">
-              <button type="submit" class="btn btn-outline-danger btn-sm">Delete Friend</button>
-            </form>
-          </div>
+    <img src="https://icon-library.net/images/default-profile-icon/default-profile-icon-24.jpg" class="rounded" width="150" height="150">
+    <h2 class="card-title">{{user.name}}</h2>
+    <p *ngIf="user.isPrivate">( Private profile )</p>
+    <p *ngIf="!user.isPrivate">( Public profile )</p>
+    <p *ngIf="(user.isFriend && !user.isRequested) || !user.isPrivate">{{user.bio}}</p>
+    <div class="row">
+      <div class="col-sm">
+        <div class="row-sm">
+          Following
         </div>
+        <div class="row-sm">
+          {{user.following.length}}
+        </div>
+      </div>
+      <div class="col-sm">
+        <form (ngSubmit)="onSubmitAdd()" *ngIf="!user.isFriend && !user.isRequested">
+          <button type="submit" class="btn btn-outline-success">Add Friend</button>
+        </form>
+        <form (ngSubmit)="onSubmitDelete()" *ngIf="user.isFriend && !user.isRequested">
+          <button type="submit" class="btn btn-outline-danger">Delete Friend</button>
+        </form>
+        <form (ngSubmit)="onSubmitDelete()" *ngIf="!user.isFriend && user.isRequested">
+          <button type="submit" class="btn btn-outline-secondary">Requested</button>
+        </form>
+      </div>
+      <div class="col-sm">
+        <div class="row-sm">
+          Followers
+        </div>
+        <div class="row-sm">
+          {{user.followers.length}}
+        </div>
+      </div>
+    </div>
 
-        <div class="col-6 col-lg-8">
+    <ul *ngFor="let obj of user.tweets">
+      <app-tweet-user [tweet]="obj" [name]="user.name"></app-tweet-user>
+    </ul>
 
-          <!-- Kako ovde da napravim posebnu komponentu za svaki post? -->
-          <ul *ngFor="let obj of user.tweets">
-            <app-tweet [tweet]="obj" [name]="user.name"></app-tweet>
-          </ul>
-        </div><!--/span-->
-      </div><!--/row-->
-    </div><!--/span-->
-  </div><!--/row-->
+  </div>
+
 </div>

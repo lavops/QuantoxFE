@@ -14,7 +14,9 @@ export class ProfileComponent implements OnInit {
     email : null,
     bio : null,
     isPrivate : null,
-    tweets : []
+    tweets : [],
+    following : [],
+    followers: []
   };
 
   public error = null;
@@ -22,6 +24,10 @@ export class ProfileComponent implements OnInit {
   constructor(
     private Jarwis: JarwisService
   ) { }
+
+  RefreshTweet($tweets) {
+    this.profile.tweets = $tweets;
+  }
 
   ngOnInit() {
     this.Jarwis.getProfile().subscribe(
@@ -38,6 +44,8 @@ export class ProfileComponent implements OnInit {
     this.profile.bio = data.user.bio;
     this.profile.tweets = data.tweets;
     this.profile.isPrivate = data.user.isPrivate;
+    this.profile.following = data.following;
+    this.profile.followers = data.followers;
   }
 
   handleError(error) {

@@ -5,8 +5,17 @@
     &nbsp;&nbsp;
     <a class="btn btn-outline-danger my-2 my-sm-0" routerLink="/signup" *ngIf="!loggedIn">Sign up</a>
 
-    <a class="btn btn-outline-success my-2 my-sm-0" routerLink="/profile" *ngIf="loggedIn">Profile</a>
+    <a class="btn btn-success my-2 my-sm-0" routerLink="/profile" *ngIf="loggedIn">Profile</a>
     &nbsp;&nbsp;
-    <a class="btn btn-outline-danger my-2 my-sm-0" href="#" (click)="logout($event)" *ngIf="loggedIn">Log out</a>
-  </form>
+    <div class="dropdown" *ngIf="loggedIn">
+      <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Options
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" routerLink="/settings">Settings</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#" (click)="logout($event)">Log out</a>
+      </div>
+    </div>
+    </form>
 </nav>

@@ -1,1 +1,19 @@
-<p>post-comment works!</p>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Comment
+</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form  #postCommentForm=ngForm (ngSubmit)="onSubmit()">
+        <div class="modal-body">
+          <input type="text" class="form-control" id="inputText" name="text" [(ngModel)]="comment.text" placeholder="What's happening?" required>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" [disabled]="!postCommentForm.valid">Comment</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

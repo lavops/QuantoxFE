@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {JarwisService} from '../../services/jarwis.service';
 import {Router} from '@angular/router';
+import {ProfileComponent} from '../profile/profile.component';
 
 @Component({
   selector: 'app-post-tweet',
@@ -17,18 +18,18 @@ export class PostTweetComponent implements OnInit {
 
   constructor(
     private Jarwis: JarwisService,
-    private router: Router
+    private router: Router,
+    private Profile: ProfileComponent
   ) { }
 
   onSubmit() {
     this.Jarwis.postTweet(this.tweet).subscribe(
-      data => this.handleResponse(data),
+      data => this.Profile.RefreshTweet(data),
       error => this.handleError(error)
     );
   }
 
   handleResponse(data) {
-    // console.log(data);
     this.redirectTo('/profile');
   }
 

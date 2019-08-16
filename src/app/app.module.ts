@@ -19,6 +19,7 @@ import { UserComponent } from './components/user/user.component';
 import { TweetComponent } from './components/tweet/tweet.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { PostCommentComponent } from './components/post-comment/post-comment.component';
+import { TweetUserComponent } from './components/tweet-user/tweet-user.component';
 
 
 
@@ -34,7 +35,8 @@ import { PostCommentComponent } from './components/post-comment/post-comment.com
     UserComponent,
     TweetComponent,
     CommentComponent,
-    PostCommentComponent
+    PostCommentComponent,
+    TweetUserComponent
   ],
   imports: [
     BrowserModule,

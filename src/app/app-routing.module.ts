@@ -34,6 +34,10 @@ const routes: Routes = [
     component: UserComponent,
     canActivate: [AfterLoginService]
   },
+  {
+    path: 'assets/img/:title',
+    component: UserComponent
+  },
 ];
 
 @NgModule({

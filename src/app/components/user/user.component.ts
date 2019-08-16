@@ -10,13 +10,17 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class UserComponent implements OnInit {
 
   public user = {
+    me : null,
     id : null,
     username : null,
     name : null,
     bio : null,
     isPrivate : null,
     isFriend : null,
-    tweets: []
+    tweets: [],
+    followers : [],
+    following : [],
+    isRequested : null
   };
 
   public error = null;
@@ -51,7 +55,7 @@ export class UserComponent implements OnInit {
   }
 
   handleResponse(data) {
-    // console.log(data);
+    this.user.me = data.user.me,
     this.user.id = data.user.id;
     this.user.username = data.user.username;
     this.user.name = data.user.name;
@@ -59,6 +63,9 @@ export class UserComponent implements OnInit {
     this.user.isPrivate = data.user.isPrivate;
     this.user.isFriend = data.friendsBool;
     this.user.tweets = data.tweets;
+    this.user.followers = data.followers;
+    this.user.following = data.following;
+    this.user.isRequested = data.isRequested;
   }
 
   handleError(error) {

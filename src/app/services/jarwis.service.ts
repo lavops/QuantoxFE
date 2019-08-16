@@ -138,4 +138,13 @@ export class JarwisService {
       headers: header
     });
   }
+
+  deleteTweet(data) {
+    const header = new HttpHeaders({
+      Authorization: 'Bearer ' + this.Token.get()
+    });
+    return this.http.post(`${this.baseUrl}/deleteTweet`, data, {
+      headers: header
+    });
+  }
 }

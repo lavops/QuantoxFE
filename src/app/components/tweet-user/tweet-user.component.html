@@ -2,23 +2,12 @@
   <div class="col-sm">
     &nbsp;
   </div>
-  <div class="col-sm-7">
+  <div class="col-sm-6">
     <img src="https://icon-library.net/images/default-profile-icon/default-profile-icon-24.jpg" class="rounded" width="50" height="50">
     &nbsp;
     <h5 class="custom-control-inline">{{name}}</h5>
     <p class="custom-control-inline">@username</p>
     <small class="custom-control-inline">{{tweet.created_at}}</small>
-
-    <div class="dropdown custom-control-inline">
-      <button class="btn btn-danger dropdown-toggle text-right custom-control-inline" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <form (ngSubmit)="onDeleteTweet()">
-          <button type="submit" class="dropdown-item">Delete</button>
-        </form>
-      </div>
-    </div>
 
     <h5 class="offset-1">{{tweet.text}}</h5>
     <div class="offset-1">

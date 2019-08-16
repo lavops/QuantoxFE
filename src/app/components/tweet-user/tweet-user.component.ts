@@ -1,15 +1,12 @@
-import { Component, OnInit , Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {JarwisService} from '../../services/jarwis.service';
-import {subscribeOn} from 'rxjs/operators';
-import {ProfileComponent} from '../profile/profile.component';
-import {UserComponent} from '../user/user.component';
 
 @Component({
-  selector: 'app-tweet',
-  templateUrl: './tweet.component.html',
-  styleUrls: ['./tweet.component.sass']
+  selector: 'app-tweet-user',
+  templateUrl: './tweet-user.component.html',
+  styleUrls: ['./tweet-user.component.sass']
 })
-export class TweetComponent implements OnInit {
+export class TweetUserComponent implements OnInit {
 
   @Input() public tweet;
   @Input() public name;
@@ -30,8 +27,7 @@ export class TweetComponent implements OnInit {
   public error = null;
 
   constructor(
-    private Jarwis: JarwisService,
-    private Profile: ProfileComponent
+    private Jarwis: JarwisService
   ) { }
 
   onSubmitComment() {
@@ -43,16 +39,9 @@ export class TweetComponent implements OnInit {
     this.comment.text = null;
   }
 
-  onDeleteTweet() {
-    this.Jarwis.deleteTweet(this.tweet.id).subscribe(
-      data => this.Profile.RefreshTweet(data),
-      error => this.handleError(error)
-    );
-  }
-
   ngOnInit() {
     this.Jarwis.getComments(this.tweet.id).subscribe(
-        data => this.handleResponse(data),
+      data => this.handleResponse(data),
       error => this.handleError(error)
     );
 
@@ -93,4 +82,5 @@ export class TweetComponent implements OnInit {
   handleError(error) {
     this.error = error.error.error;
   }
+
 }
