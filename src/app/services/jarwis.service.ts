@@ -111,4 +111,31 @@ export class JarwisService {
       headers: header
     });
   }
+
+  likeTweet(data) {
+    const header = new HttpHeaders({
+      Authorization: 'Bearer ' + this.Token.get()
+    });
+    return this.http.post(`${this.baseUrl}/likeTweet`, data, {
+      headers: header
+    });
+  }
+
+  unlikeTweet(data) {
+    const header = new HttpHeaders({
+      Authorization: 'Bearer ' + this.Token.get()
+    });
+    return this.http.post(`${this.baseUrl}/unlikeTweet`, data, {
+      headers: header
+    });
+  }
+
+  getLikes(data) {
+    const header = new HttpHeaders({
+      Authorization: 'Bearer ' + this.Token.get()
+    });
+    return this.http.get(`${this.baseUrl}/getLikes/${data}`, {
+      headers: header
+    });
+  }
 }

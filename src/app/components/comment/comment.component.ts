@@ -10,11 +10,6 @@ export class CommentComponent implements OnInit {
 
   @Input() public comment;
 
-  public data = {
-    name : null,
-    username : null
-  };
-
   public error = {};
 
   constructor(
@@ -22,19 +17,6 @@ export class CommentComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.Jarwis.getUser(this.comment.user_id).subscribe(
-      data => this.handleResponse(data),
-      error => this.handleError(error)
-    );
-  }
-
-  handleResponse(user) {
-    this.data.name = user.name;
-    this.data.username  = user.username;
-  }
-
-  handleError(error) {
-    this.error = error.error.error;
   }
 
 }

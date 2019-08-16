@@ -15,7 +15,9 @@ export class TweetComponent implements OnInit {
   public data = {
     username : null,
     name : null,
-    comments : []
+    comments : [],
+    likes : [],
+    isLiked : false
   };
 
   public comment = {
@@ -42,6 +44,11 @@ export class TweetComponent implements OnInit {
         data => this.handleResponse(data),
       error => this.handleError(error)
     );
+
+    this.Jarwis.getLikes(this.tweet.id).subscribe(
+      data => this.handleGetLikesResponse(data),
+      error => this.handleError(error)
+    );
   }
 
   handleCommentResponse(data) {
@@ -52,9 +59,32 @@ export class TweetComponent implements OnInit {
     this.data.comments = data;
   }
 
+  handleGetLikesResponse(data) {
+    this.data.likes = data.likes;
+    this.data.isLiked = data.isLiked;
+  }
+
   handleError(error) {
     this.error = error.error.error;
   }
 
+  onSubmitLike() {
+    this.Jarwis.likeTweet(this.tweet).subscribe(
+      data => this.handleLikeResponse(data),
+      error => this.handleError(error)
+    );
+  }
+
+  onSubmitUnlike() {
+    this.Jarwis.unlikeTweet(this.tweet).subscribe(
+      data => this.handleLikeResponse(data),
+      error => this.handleError(error)
+    );
+  }
+
+  handleLikeResponse(data) {
+    this.data.likes = data.likes;
+    this.data.isLiked = data.isLiked;
+  }
 
 }

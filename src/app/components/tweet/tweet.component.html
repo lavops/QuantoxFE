@@ -5,8 +5,14 @@
       <p class="card-text">{{tweet.text}}</p>
       <small>{{tweet.created_at}}</small>
       <br>
-      <a href="#" class="btn btn-primary">Like</a>
-      &nbsp; &nbsp;
+      {{data.likes.length}}
+      <form class="custom-control-inline" (ngSubmit)="onSubmitLike()" *ngIf="!data.isLiked">
+        <button type="submit" class="btn btn-outline-success">Like</button>
+      </form>
+      <form class="custom-control-inline" (ngSubmit)="onSubmitUnlike()" *ngIf="data.isLiked">
+        <button type="submit" class="btn btn-outline-danger">Dislike</button>
+      </form>
+      {{data.comments.length}}
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
         Comment
       </button>
