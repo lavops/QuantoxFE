@@ -17,9 +17,10 @@ import { PostTweetComponent } from './components/post-tweet/post-tweet.component
 import { SettingsComponent } from './components/settings/settings.component';
 import { UserComponent } from './components/user/user.component';
 import { TweetComponent } from './components/tweet/tweet.component';
-import { CommentComponent } from './components/comment/comment.component';
-import { PostCommentComponent } from './components/post-comment/post-comment.component';
 import { TweetUserComponent } from './components/tweet-user/tweet-user.component';
+import { TimelineComponent } from './components/timeline/timeline.component';
+import { PostTweetTimelineComponent } from './components/post-tweet-timeline/post-tweet-timeline.component';
+import { TweetTimelineComponent } from './components/tweet-timeline/tweet-timeline.component';
 
 
 
@@ -34,9 +35,10 @@ import { TweetUserComponent } from './components/tweet-user/tweet-user.component
     SettingsComponent,
     UserComponent,
     TweetComponent,
-    CommentComponent,
-    PostCommentComponent,
-    TweetUserComponent
+    TweetUserComponent,
+    TimelineComponent,
+    PostTweetTimelineComponent,
+    TweetTimelineComponent
   ],
   imports: [
     BrowserModule,

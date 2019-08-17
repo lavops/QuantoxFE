@@ -1,0 +1,7 @@
+<div class="container justify-content-center">
+  <app-post-tweet-timeline></app-post-tweet-timeline>
+
+  <ul *ngFor="let obj of data.tweets">
+    <app-tweet-timeline [tweet]="obj" [name]="obj.name"></app-tweet-timeline>
+  </ul>
+</div>

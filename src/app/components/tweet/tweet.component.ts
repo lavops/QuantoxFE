@@ -22,11 +22,17 @@ export class TweetComponent implements OnInit {
     isLiked : false
   };
 
+  public delete = {
+    id : null,
+    url : 'profile'
+  };
+
   public comment = {
     tweet_id : null,
     text : null,
   };
 
+  public me = localStorage.getItem('me');
   public error = null;
 
   constructor(
@@ -44,8 +50,16 @@ export class TweetComponent implements OnInit {
   }
 
   onDeleteTweet() {
-    this.Jarwis.deleteTweet(this.tweet.id).subscribe(
+    this.delete.id = this.tweet.id;
+    this.Jarwis.deleteTweet(this.delete).subscribe(
       data => this.Profile.RefreshTweet(data),
+      error => this.handleError(error)
+    );
+  }
+
+  onDeleteComment(comment) {
+    this.Jarwis.deleteComment(comment).subscribe(
+      data => this.handleResponse(data),
       error => this.handleError(error)
     );
   }

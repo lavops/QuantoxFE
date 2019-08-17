@@ -2,7 +2,7 @@
 
   <div class="text-center">
 
-    <img src="https://icon-library.net/images/default-profile-icon/default-profile-icon-24.jpg" class="rounded" width="150" height="150">
+    <img src="{{profile.imgURL}}" class="rounded" width="150" height="150">
     <h2 class="card-title">{{profile.name}}</h2>
     <p *ngIf="profile.isPrivate">( Private profile )</p>
     <p *ngIf="!profile.isPrivate">( Public profile )</p>

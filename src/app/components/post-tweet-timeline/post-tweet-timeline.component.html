@@ -1,0 +1,6 @@
+<form class="form-inline justify-content-center" #postTweetForm=ngForm (ngSubmit)="onSubmit()">
+  <div class="form-group mx-sm-3">
+    <input type="text" class="" id="inputPost2" name="text" [(ngModel)]="tweet.text" placeholder="What's happening?" size="50" required>
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="!postTweetForm.valid">Tweet</button>
+</form>

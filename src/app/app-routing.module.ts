@@ -7,6 +7,7 @@ import {BeforeLoginService} from './services/before-login.service';
 import {AfterLoginService} from './services/after-login.service';
 import {SettingsComponent} from './components/settings/settings.component';
 import {UserComponent} from './components/user/user.component';
+import {TimelineComponent} from './components/timeline/timeline.component';
 
 const routes: Routes = [
   {
@@ -35,8 +36,9 @@ const routes: Routes = [
     canActivate: [AfterLoginService]
   },
   {
-    path: 'assets/img/:title',
-    component: UserComponent
+    path: 'timeline',
+    component: TimelineComponent,
+    canActivate: [AfterLoginService]
   },
 ];
 

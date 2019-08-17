@@ -20,7 +20,8 @@ export class UserComponent implements OnInit {
     tweets: [],
     followers : [],
     following : [],
-    isRequested : null
+    isRequested : null,
+    imgURL : null
   };
 
   public error = null;
@@ -66,11 +67,12 @@ export class UserComponent implements OnInit {
     this.user.followers = data.followers;
     this.user.following = data.following;
     this.user.isRequested = data.isRequested;
+    this.user.imgURL = data.user.imgURL;
   }
 
   handleError(error) {
     this.error = error.error.error;
-  };
+  }
   /*
 
   Kada se stisne na link nekog user salje se ovako

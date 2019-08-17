@@ -33,8 +33,7 @@ export class LoginComponent implements OnInit {
   }
 
   handleResponse(data) {
-    // console.log(data.access_token);
-    // console.log(data.user);
+    localStorage.setItem('me', data.user.id);
     this.Token.handle(data.access_token);
     this.Auth.changeAuthStatus(true);
     this.router.navigateByUrl('/profile');

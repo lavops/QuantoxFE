@@ -16,7 +16,8 @@ export class ProfileComponent implements OnInit {
     isPrivate : null,
     tweets : [],
     following : [],
-    followers: []
+    followers: [],
+    imgURL : []
   };
 
   public error = null;
@@ -46,6 +47,7 @@ export class ProfileComponent implements OnInit {
     this.profile.isPrivate = data.user.isPrivate;
     this.profile.following = data.following;
     this.profile.followers = data.followers;
+    this.profile.imgURL = data.user.imgURL;
   }
 
   handleError(error) {

@@ -1,12 +1,13 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {JarwisService} from '../../services/jarwis.service';
+import {TimelineComponent} from '../timeline/timeline.component';
 
 @Component({
-  selector: 'app-tweet-user',
-  templateUrl: './tweet-user.component.html',
-  styleUrls: ['./tweet-user.component.sass']
+  selector: 'app-tweet-timeline',
+  templateUrl: './tweet-timeline.component.html',
+  styleUrls: ['./tweet-timeline.component.sass']
 })
-export class TweetUserComponent implements OnInit {
+export class TweetTimelineComponent implements OnInit {
 
   @Input() public tweet;
   @Input() public name;
@@ -19,6 +20,11 @@ export class TweetUserComponent implements OnInit {
     isLiked : false
   };
 
+  public delete = {
+    id : null,
+    url : 'timeline'
+  };
+
   public comment = {
     tweet_id : null,
     text : null,
@@ -28,7 +34,8 @@ export class TweetUserComponent implements OnInit {
   public error = null;
 
   constructor(
-    private Jarwis: JarwisService
+    private Jarwis: JarwisService,
+    private Timeline: TimelineComponent
   ) { }
 
   onSubmitComment() {
@@ -38,6 +45,14 @@ export class TweetUserComponent implements OnInit {
       error => this.handleError(error)
     );
     this.comment.text = null;
+  }
+
+  onDeleteTweet() {
+    this.delete.id = this.tweet.id;
+    this.Jarwis.deleteTweet(this.delete).subscribe(
+      data => this.Timeline.RefreshTweet(data),
+      error => this.handleError(error)
+    );
   }
 
   onDeleteComment(comment) {

@@ -147,4 +147,22 @@ export class JarwisService {
       headers: header
     });
   }
+
+  deleteComment(data) {
+    const header = new HttpHeaders({
+      Authorization: 'Bearer ' + this.Token.get()
+    });
+    return this.http.post(`${this.baseUrl}/deleteComment`, data, {
+      headers: header
+    });
+  }
+
+  getTweets() {
+    const header = new HttpHeaders({
+      Authorization: 'Bearer ' + this.Token.get()
+    });
+    return this.http.get(`${this.baseUrl}/getTweets`, {
+      headers: header
+    });
+  }
 }
