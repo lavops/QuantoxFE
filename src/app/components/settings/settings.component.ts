@@ -14,7 +14,8 @@ export class SettingsComponent implements OnInit {
     bio : null,
     isPrivate: false,
     password : null,
-    password_confirmation: null
+    password_confirmation: null,
+    image : ''
   };
 
   public error = null;
@@ -23,6 +24,17 @@ export class SettingsComponent implements OnInit {
     private Jarwis: JarwisService,
     private router: Router
   ) { }
+
+  onSelectFile(event) {
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+      console.log(event.target.files[0]);
+      reader.readAsDataURL(event.target.files[0]);
+      reader.onload = (event) => {
+        this.updateUser.image = event.target.result;
+      };
+    }
+  }
 
   onSubmit() {
     // console.log(this.updateUser)
@@ -49,6 +61,7 @@ export class SettingsComponent implements OnInit {
     this.updateUser.name = data.name;
     this.updateUser.bio = data.bio;
     this.updateUser.isPrivate = data.isPrivate;
+    this.updateUser.image = data.imgURL;
   }
 
   handleError(error) {
