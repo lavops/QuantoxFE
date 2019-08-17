@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
 
   handleResponse(data) {
     localStorage.setItem('me', data.user.id);
+    localStorage.setItem('username', data.user.username);
     this.Token.handle(data.access_token);
     this.Auth.changeAuthStatus(true);
     this.router.navigateByUrl('/profile');

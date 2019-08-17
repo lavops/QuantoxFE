@@ -30,7 +30,7 @@ export class SettingsComponent implements OnInit {
       const reader = new FileReader();
       console.log(event.target.files[0]);
       reader.readAsDataURL(event.target.files[0]);
-      reader.onload = (event) => {
+      reader.onload = (event: any) => {
         this.updateUser.image = event.target.result;
       };
     }

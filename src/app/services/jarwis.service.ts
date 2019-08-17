@@ -165,4 +165,49 @@ export class JarwisService {
       headers: header
     });
   }
+
+  getFollowNotify() {
+    const header = new HttpHeaders({
+      Authorization: 'Bearer ' + this.Token.get()
+    });
+    return this.http.get(`${this.baseUrl}/getFollowNotify`, {
+      headers: header
+    });
+  }
+
+  acceptFollow(data) {
+    const header = new HttpHeaders({
+      Authorization: 'Bearer ' + this.Token.get()
+    });
+    return this.http.post(`${this.baseUrl}/acceptFollow`, data, {
+      headers: header
+    });
+  }
+
+  declineFollow(data) {
+    const header = new HttpHeaders({
+      Authorization: 'Bearer ' + this.Token.get()
+    });
+    return this.http.post(`${this.baseUrl}/declineFollow`, data, {
+      headers: header
+    });
+  }
+
+  dismissFollow(data) {
+    const header = new HttpHeaders({
+      Authorization: 'Bearer ' + this.Token.get()
+    });
+    return this.http.post(`${this.baseUrl}/dismissFollow`, data, {
+      headers: header
+    });
+  }
+
+  getLikeNotify() {
+    const header = new HttpHeaders({
+      Authorization: 'Bearer ' + this.Token.get()
+    });
+    return this.http.get(`${this.baseUrl}/getLikeNotify`, {
+      headers: header
+    });
+  }
 }

@@ -30,7 +30,7 @@
         <button type="submit" class="btn btn-danger">Dislike</button>
       </form>
       {{data.comments.length}}
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal">
+      <button type="button" class="btn btn-primary" data-toggle="modal" [attr.data-target]="'#tweet' + tweet.id">
         Comment
       </button>
     </div>
@@ -40,16 +40,19 @@
   </div>
 </div>
 
-<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="tweet{{tweet.id}}" tabindex="-1" role="dialog" [attr.aria-labelledby]="'tweet' + tweet.id" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <form  #postCommentForm=ngForm (ngSubmit)="onSubmitComment()">
         <div class="modal-body">
           <input type="text" class="form-control" id="inputText" name="text" [(ngModel)]="comment.text" placeholder="What's happening?" required>
         </div>
-        <ul *ngFor="let obj of data.comments">
+        <li *ngFor="let obj of data.comments">
           <hr>
+          <img src="{{obj.imgURL}}" class="rounded" width="50" height="50">
           <h5 class="custom-control-inline">{{obj.name}}</h5>
+          <p class="custom-control-inline">@{{obj.username}}</p>
+          <small class="custom-control-inline">{{obj.created_at}}</small>
           <div *ngIf="obj.user_id == me" class="dropdown custom-control-inline">
             <button class="btn btn-danger dropdown-toggle text-right custom-control-inline" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
@@ -60,8 +63,8 @@
               </form>
             </div>
           </div>
-          <p >{{obj.text}}</p>
-        </ul>
+          <p class="offset-1">{{obj.text}}</p>
+        </li>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <button type="submit" class="btn btn-primary" [disabled]="!postCommentForm.valid">Comment</button>
@@ -70,5 +73,6 @@
     </div>
   </div>
 </div>
+
 
 

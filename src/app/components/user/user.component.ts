@@ -25,7 +25,7 @@ export class UserComponent implements OnInit {
   };
 
   public error = null;
-
+  private me = localStorage.getItem('username');
   private routeName = this.route.snapshot.paramMap.get('username');
 
   constructor(
@@ -49,6 +49,9 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.me === this.routeName) {
+      this.router.navigateByUrl('/profile');
+    }
     this.Jarwis.getUserInfo(this.routeName).subscribe(
       data => this.handleResponse(data),
       error => this.handleError(error)

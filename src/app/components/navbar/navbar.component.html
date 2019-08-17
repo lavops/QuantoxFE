@@ -1,7 +1,9 @@
 <nav class="navbar navbar-light bg-light">
   <form class="form-inline">
     <a class="navbar-brand" routerLink="/">Twitter</a>
-    <a class="btn btn-info" routerLink="/timeline" *ngIf="loggedIn">HOME</a>
+    <a class="btn btn-info" routerLink="/timeline" *ngIf="loggedIn">
+      HOME
+    </a>
   </form>
 
   <form class="form-inline">
@@ -9,6 +11,50 @@
     &nbsp;&nbsp;
     <a class="btn btn-outline-danger my-2 my-sm-0" routerLink="/signup" *ngIf="!loggedIn">Sign up</a>
 
+    <div class="dropdown" *ngIf="loggedIn && (notify.newFriends.length > 0)">
+      <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Friends <span class="badge badge-light">{{notify.newFriends.length}}</span>
+        <span class="sr-only">unread messages</span>
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <li *ngFor="let obj of notify.newFriends">
+          <div class="dropdown-item" *ngIf="obj.isRequested == true">
+            <div class="row">
+              <p><b>{{obj.name}}</b> Requested following</p>
+              <form class="custom-control-inline" (ngSubmit)="acceptFollow(obj)">
+                <button type="submit" class="btn btn-success">Accept</button>
+              </form>
+              <form class="custom-control-inline" (ngSubmit)="declineFollow(obj)">
+                <button type="submit" class="btn btn-danger">Decline</button>
+              </form>
+            </div>
+            <hr>
+          </div>
+
+          <div class="dropdown-item" *ngIf="obj.isRequested == false">
+            <div class="row">
+              <p><b>{{obj.name}}</b> Followed you</p>
+              <form class="custom-control-inline" (ngSubmit)="dismissFollow(obj)">
+                <button type="submit" class="btn btn-danger">Dismiss</button>
+              </form>
+              <hr>
+            </div>
+            <hr>
+          </div>
+        </li>
+      </div>
+    </div>
+    &nbsp;
+    <div class="dropdown" *ngIf="loggedIn && (notify.newLikes.length > 0)">
+      <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Likes <span class="badge badge-light">{{notify.newLikes.length}}</span>
+        <span class="sr-only">unread messages</span>
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+
+      </div>
+    </div>
+    &nbsp;
     <a class="btn btn-success my-2 my-sm-0" routerLink="/profile" *ngIf="loggedIn">Profile</a>
     &nbsp;&nbsp;
     <div class="dropdown" *ngIf="loggedIn">
