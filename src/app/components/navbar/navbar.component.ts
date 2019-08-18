@@ -18,6 +18,8 @@ export class NavbarComponent implements OnInit {
     newLikes : []
   }
 
+  public users: any = [];
+
   constructor(
     private Auth: AuthService,
     private router: Router,
@@ -58,6 +60,13 @@ export class NavbarComponent implements OnInit {
   dismissFollow(obj) {
     this.Jarwis.dismissFollow(obj).subscribe(
       data => this.handleFollow(data)
+    );
+  }
+
+  onSearch(event) {
+    console.log(event.target.value);
+    this.Jarwis.searchUsers(event.target.value).subscribe(
+      data => this.users = data
     );
   }
 

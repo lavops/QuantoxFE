@@ -210,4 +210,13 @@ export class JarwisService {
       headers: header
     });
   }
+
+  searchUsers(data) {
+    const header = new HttpHeaders({
+      Authorization: 'Bearer ' + this.Token.get()
+    });
+    return this.http.get(`${this.baseUrl}/search/${data}`, {
+      headers: header
+    });
+  }
 }

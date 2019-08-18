@@ -21,6 +21,7 @@ import { TweetUserComponent } from './components/tweet-user/tweet-user.component
 import { TimelineComponent } from './components/timeline/timeline.component';
 import { PostTweetTimelineComponent } from './components/post-tweet-timeline/post-tweet-timeline.component';
 import { TweetTimelineComponent } from './components/tweet-timeline/tweet-timeline.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 
 
@@ -38,7 +39,8 @@ import { TweetTimelineComponent } from './components/tweet-timeline/tweet-timeli
     TweetUserComponent,
     TimelineComponent,
     PostTweetTimelineComponent,
-    TweetTimelineComponent
+    TweetTimelineComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

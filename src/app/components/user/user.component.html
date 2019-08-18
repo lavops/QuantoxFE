@@ -1,4 +1,10 @@
-<div class="container justify-content-center">
+<app-navbar></app-navbar>
+
+<div class="container text-center" *ngIf="user.name == null">
+  <app-loading></app-loading>
+</div>
+
+<div class="container justify-content-center" *ngIf="user.name != null">
 
   <div class="text-center">
 

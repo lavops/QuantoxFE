@@ -7,9 +7,19 @@
   </form>
 
   <form class="form-inline">
+
     <a class="btn btn-outline-success my-2 my-sm-0" routerLink="/login" *ngIf="!loggedIn">Login</a>
     &nbsp;&nbsp;
     <a class="btn btn-outline-danger my-2 my-sm-0" routerLink="/signup" *ngIf="!loggedIn">Sign up</a>
+
+    <div class="dropdown" *ngIf="loggedIn">
+      <input type="text" placeholder="Search" size="20" (keyup)='onSearch($event)' class="dropdown-toggle" id="dropdownMenuButton5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton5">
+        <li *ngFor="let obj of users">
+          <a href="/user/{{obj.username}}" class="list-unstyled"><small>{{obj.name}} - @ {{obj.username}}</small></a>
+        </li>
+      </div>
+    </div>
 
     <div class="dropdown" *ngIf="loggedIn && (notify.newFriends.length > 0)">
       <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

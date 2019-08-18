@@ -1,4 +1,10 @@
-<div class="container justify-content-center">
+<app-navbar></app-navbar>
+
+<div class="container text-center" *ngIf="data.tweets == null">
+  <app-loading></app-loading>
+</div>
+
+<div class="container justify-content-center" *ngIf="data.tweets != null">
   <app-post-tweet-timeline></app-post-tweet-timeline>
 
   <ul *ngFor="let obj of data.tweets">

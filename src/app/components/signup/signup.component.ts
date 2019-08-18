@@ -34,8 +34,8 @@ export class SignupComponent implements OnInit {
   }
 
   handleResponse(data) {
-    // console.log(data.access_token);
-    // console.log(data.user);
+    localStorage.setItem('me', data.user.id);
+    localStorage.setItem('username', data.user.username);
     this.Token.handle(data.access_token);
     this.router.navigateByUrl('/profile');
   }
