@@ -8,12 +8,17 @@ import {AfterLoginService} from './services/after-login.service';
 import {SettingsComponent} from './components/settings/settings.component';
 import {UserComponent} from './components/user/user.component';
 import {TimelineComponent} from './components/timeline/timeline.component';
+import {HomepageComponent} from './components/homepage/homepage.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'homepage',
     pathMatch: 'full'
+  },
+  {
+    path: 'homepage',
+    component: HomepageComponent
   },
   {
     path: 'login',

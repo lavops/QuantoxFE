@@ -202,6 +202,15 @@ export class JarwisService {
     });
   }
 
+  dismissLike(data) {
+    const header = new HttpHeaders({
+      Authorization: 'Bearer ' + this.Token.get()
+    });
+    return this.http.post(`${this.baseUrl}/dismissLike`, data, {
+      headers: header
+    });
+  }
+
   getLikeNotify() {
     const header = new HttpHeaders({
       Authorization: 'Bearer ' + this.Token.get()

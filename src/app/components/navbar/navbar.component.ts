@@ -36,6 +36,7 @@ export class NavbarComponent implements OnInit {
       );
 
       this.Jarwis.getLikeNotify().subscribe(
+        data => this.handleLike(data)
       );
     }
 
@@ -43,6 +44,10 @@ export class NavbarComponent implements OnInit {
 
   handleFollow(data) {
     this.notify.newFriends = data;
+  }
+
+  handleLike(data) {
+    this.notify.newLikes = data;
   }
 
   acceptFollow(obj) {
@@ -60,6 +65,12 @@ export class NavbarComponent implements OnInit {
   dismissFollow(obj) {
     this.Jarwis.dismissFollow(obj).subscribe(
       data => this.handleFollow(data)
+    );
+  }
+
+  dismissLike(obj) {
+    this.Jarwis.dismissLike(obj).subscribe(
+      data => this.handleLike(data)
     );
   }
 

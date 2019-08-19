@@ -43,10 +43,10 @@
       </div>
     </div>
 
-    <ul *ngFor="let obj of user.tweets">
-      <app-tweet-user [tweet]="obj" [name]="user.name"></app-tweet-user>
-    </ul>
-
   </div>
+
+  <ul *ngFor="let obj of user.tweets">
+    <app-tweet-user [tweet]="obj" [name]="user.name"></app-tweet-user>
+  </ul>
 
 </div>

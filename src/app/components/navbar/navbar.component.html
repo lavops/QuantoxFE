@@ -20,8 +20,8 @@
         </li>
       </div>
     </div>
-
-    <div class="dropdown" *ngIf="loggedIn && (notify.newFriends.length > 0)">
+    &nbsp;
+    <div class="dropdown" *ngIf="loggedIn">
       <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Friends <span class="badge badge-light">{{notify.newFriends.length}}</span>
         <span class="sr-only">unread messages</span>
@@ -55,13 +55,23 @@
       </div>
     </div>
     &nbsp;
-    <div class="dropdown" *ngIf="loggedIn && (notify.newLikes.length > 0)">
+    <div class="dropdown" *ngIf="loggedIn">
       <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Likes <span class="badge badge-light">{{notify.newLikes.length}}</span>
         <span class="sr-only">unread messages</span>
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-
+        <li *ngFor="let obj of notify.newLikes">
+          <div class="dropdown-item">
+            <div class="row">
+              <p><b>{{obj.name}}</b> Liked your tweet!</p>
+              <form class="custom-control-inline" (ngSubmit)="dismissLike(obj)">
+                <button type="submit" class="btn btn-danger">Dismiss</button>
+              </form>
+            </div>
+            <hr>
+          </div>
+        </li>
       </div>
     </div>
     &nbsp;
