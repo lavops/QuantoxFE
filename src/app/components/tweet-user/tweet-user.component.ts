@@ -11,14 +11,6 @@ export class TweetUserComponent implements OnInit {
   @Input() public tweet;
   @Input() public name;
 
-  public data = {
-    username : null,
-    name : null,
-    comments : [],
-    likes : [],
-    isLiked : false
-  };
-
   public comment = {
     tweet_id : null,
     text : null,
@@ -30,6 +22,9 @@ export class TweetUserComponent implements OnInit {
   constructor(
     private Jarwis: JarwisService
   ) { }
+
+  ngOnInit() {
+  }
 
   onSubmitComment() {
     this.comment.tweet_id = this.tweet.id;
@@ -47,25 +42,9 @@ export class TweetUserComponent implements OnInit {
     );
   }
 
-  ngOnInit() {
-    this.Jarwis.getComments(this.tweet.id).subscribe(
-      data => this.handleResponse(data),
-      error => this.handleError(error)
-    );
-
-    this.Jarwis.getLikes(this.tweet.id).subscribe(
-      data => this.handleGetLikesResponse(data),
-      error => this.handleError(error)
-    );
-  }
-
   handleResponse(data) {
-    this.data.comments = data;
-  }
-
-  handleGetLikesResponse(data) {
-    this.data.likes = data.likes;
-    this.data.isLiked = data.isLiked;
+    this.tweet.comments = data;
+    this.tweet.countComments = data.length;
   }
 
   onSubmitLike() {
@@ -83,8 +62,8 @@ export class TweetUserComponent implements OnInit {
   }
 
   handleLikeResponse(data) {
-    this.data.likes = data.likes;
-    this.data.isLiked = data.isLiked;
+    this.tweet.countLikes = data.likes.length;
+    this.tweet.isLiked = data.isLiked;
   }
 
   handleError(error) {

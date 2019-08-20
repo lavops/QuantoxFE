@@ -38,9 +38,6 @@
         <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
       </li>
       <li class="nav-item w-25">
-        <a class="nav-link" id="liked-tab" data-toggle="tab" href="#liked" role="tab" aria-controls="lid" aria-selected="false">Liked Tweets</a>
-      </li>
-      <li class="nav-item w-25">
         <a class="nav-link" id="following-tab" data-toggle="tab" href="#following" role="tab" aria-controls="following" aria-selected="false">Following</a>
       </li>
       <li class="nav-item w-25">
@@ -57,11 +54,6 @@
 
       <ul *ngFor="let obj of profile.tweets">
         <app-tweet [tweet]="obj" [name]="profile.name"></app-tweet>
-      </ul>
-    </div>
-    <div class="tab-pane fade" id="liked" role="tabpanel" aria-labelledby="profile-tab">
-      <ul *ngFor="let obj of profile.liked">
-        <app-tweet [tweet]="obj" [name]="obj.name"></app-tweet>
       </ul>
     </div>
     <div class="tab-pane fade" id="following" role="tabpanel" aria-labelledby="contact-tab">

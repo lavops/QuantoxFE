@@ -11,14 +11,14 @@
 
     <h5 class="offset-1">{{tweet.text}}</h5>
     <div class="offset-1">
-      {{data.likes.length}}
-      <form class="custom-control-inline" (ngSubmit)="onSubmitLike()" *ngIf="!data.isLiked">
+      {{tweet.countLikes}}
+      <form class="custom-control-inline" (ngSubmit)="onSubmitLike()" *ngIf="!tweet.isLiked">
         <button type="submit" class="btn btn-success">Like</button>
       </form>
-      <form class="custom-control-inline" (ngSubmit)="onSubmitUnlike()" *ngIf="data.isLiked">
+      <form class="custom-control-inline" (ngSubmit)="onSubmitUnlike()" *ngIf="tweet.isLiked">
         <button type="submit" class="btn btn-danger">Dislike</button>
       </form>
-      {{data.comments.length}}
+      {{tweet.countComments}}
       <button type="button" class="btn btn-primary" data-toggle="modal" [attr.data-target]="'#tweet' + tweet.id">
         Comment
       </button>
@@ -36,7 +36,7 @@
         <div class="modal-body">
           <input type="text" class="form-control" id="inputText" name="text" [(ngModel)]="comment.text" placeholder="What's happening?" required>
         </div>
-        <li *ngFor="let obj of data.comments">
+        <li *ngFor="let obj of tweet.comments">
           <hr>
           <img src="{{obj.imgURL}}" class="rounded" width="50" height="50">
           <h5 class="custom-control-inline">{{obj.name}}</h5>

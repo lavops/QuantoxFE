@@ -65,19 +65,11 @@ export class TweetComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.Jarwis.getComments(this.tweet.id).subscribe(
-        data => this.handleResponse(data),
-      error => this.handleError(error)
-    );
-
-    this.Jarwis.getLikes(this.tweet.id).subscribe(
-      data => this.handleGetLikesResponse(data),
-      error => this.handleError(error)
-    );
   }
 
   handleResponse(data) {
-    this.data.comments = data;
+    this.tweet.comments = data;
+    this.tweet.countComments = this.tweet.comments.length;
   }
 
   handleGetLikesResponse(data) {
@@ -100,8 +92,8 @@ export class TweetComponent implements OnInit {
   }
 
   handleLikeResponse(data) {
-    this.data.likes = data.likes;
-    this.data.isLiked = data.isLiked;
+    this.tweet.countLikes = data.likes.length;
+    this.tweet.isLiked = data.isLiked;
   }
 
   handleError(error) {
