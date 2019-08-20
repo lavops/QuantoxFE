@@ -28,6 +28,7 @@ export class PostTweetTimelineComponent implements OnInit {
       data => this.Timeline.RefreshTweet(data),
       error => this.handleError(error)
     );
+    this.tweet.text = '';
   }
 
   handleResponse(data) {

@@ -49,7 +49,7 @@ const routes: Routes = [
     path: 'timeline',
     component: TimelineComponent,
     canActivate: [AfterLoginService]
-  },
+  }
 ];
 
 @NgModule({

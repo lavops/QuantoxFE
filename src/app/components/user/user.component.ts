@@ -21,7 +21,8 @@ export class UserComponent implements OnInit {
     followers : [],
     following : [],
     isRequested : null,
-    imgURL : null
+    imgURL : null,
+    liked: []
   };
 
   public error = null;

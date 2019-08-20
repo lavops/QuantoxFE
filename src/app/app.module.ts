@@ -24,8 +24,6 @@ import { TweetTimelineComponent } from './components/tweet-timeline/tweet-timeli
 import { LoadingComponent } from './components/loading/loading.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,

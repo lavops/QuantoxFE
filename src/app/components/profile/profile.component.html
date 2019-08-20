@@ -1,5 +1,3 @@
-<app-navbar></app-navbar>
-
 <div class="container text-center" *ngIf="profile.name == null">
   <app-loading></app-loading>
 </div>
@@ -34,12 +32,57 @@
         </div>
       </div>
     </div>
+
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item w-25">
+        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
+      </li>
+      <li class="nav-item w-25">
+        <a class="nav-link" id="liked-tab" data-toggle="tab" href="#liked" role="tab" aria-controls="lid" aria-selected="false">Liked Tweets</a>
+      </li>
+      <li class="nav-item w-25">
+        <a class="nav-link" id="following-tab" data-toggle="tab" href="#following" role="tab" aria-controls="following" aria-selected="false">Following</a>
+      </li>
+      <li class="nav-item w-25">
+        <a class="nav-link" id="followers-tab" data-toggle="tab" href="#followers" role="tab" aria-controls="followers" aria-selected="false">Followers</a>
+      </li>
+    </ul>
+
   </div>
 
-  <app-post-tweet></app-post-tweet>
 
-  <ul *ngFor="let obj of profile.tweets">
-    <app-tweet [tweet]="obj" [name]="profile.name"></app-tweet>
-  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+      <app-post-tweet></app-post-tweet>
+
+      <ul *ngFor="let obj of profile.tweets">
+        <app-tweet [tweet]="obj" [name]="profile.name"></app-tweet>
+      </ul>
+    </div>
+    <div class="tab-pane fade" id="liked" role="tabpanel" aria-labelledby="profile-tab">
+      <ul *ngFor="let obj of profile.liked">
+        <app-tweet [tweet]="obj" [name]="obj.name"></app-tweet>
+      </ul>
+    </div>
+    <div class="tab-pane fade" id="following" role="tabpanel" aria-labelledby="contact-tab">
+      <ul *ngFor="let obj of profile.following">
+        <div class="text-center">
+          <img src="{{obj.imgURL}}" class="custom-control-inline" width="50">
+          <a href="/user/{{obj.username}}"><p class="custom-control-inline">{{obj.name}}</p></a>
+        </div>
+      </ul>
+    </div>
+    <div class="tab-pane fade" id="followers" role="tabpanel" aria-labelledby="contact-tab">
+      <ul *ngFor="let obj of profile.followers">
+        <div class="text-center">
+          <img src="{{obj.imgURL}}" class="custom-control-inline" width="50">
+          <a href="/user/{{obj.username}}"><p class="custom-control-inline">{{obj.name}}</p></a>
+        </div>
+      </ul>
+    </div>
+  </div>
+
+
+
 
 </div>
