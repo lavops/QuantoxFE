@@ -13,9 +13,36 @@
       // Enable pusher logging - don't include this in production
       // Pusher.logToConsole = true;
 
-      me = localStorage.getItem('me');
+      me = localStorage.getItem('username');
 
+      Pusher.logToConsole = true;
 
+      var pusher = new Pusher('c3bf3ca0e98e34c44306', {
+          cluster: 'eu',
+          forceTLS: true
+      });
+
+      var channel = pusher.subscribe('my-channel');
+      channel.bind('my-event', function(data) {
+          alert(JSON.stringify(data));
+      });
+
+      channel.bind('liked', function(data) {
+          if(me === data.ownerUsername && me != data.likerUsername) {
+              alert(data.likerName + " liked your Tweet! Refresh your page!");
+          }
+      });
+
+      channel.bind('followed', function(data) {
+          if(me === data.followedUsername) {
+              if(!data.isRequested) {
+                  alert(data.followerName + " Followed you! Refresh your page!");
+              }
+              else if(data.isRequested) {
+                  alert(data.followerName + " Requested follow! Refresh your page!");
+              }
+          }
+      });
 
 
   </script>
