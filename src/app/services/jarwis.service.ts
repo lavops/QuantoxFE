@@ -228,4 +228,22 @@ export class JarwisService {
       headers: header
     });
   }
+
+  blockFriend(data) {
+    const header = new HttpHeaders({
+      Authorization: 'Bearer ' + this.Token.get()
+    });
+    return this.http.post(`${this.baseUrl}/blockFriend`, data, {
+      headers: header
+    });
+  }
+
+  unblockFriend(data) {
+    const header = new HttpHeaders({
+      Authorization: 'Bearer ' + this.Token.get()
+    });
+    return this.http.post(`${this.baseUrl}/unblockFriend`, data, {
+      headers: header
+    });
+  }
 }
