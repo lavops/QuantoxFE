@@ -10,7 +10,8 @@
     <h2 class="card-title">{{user.name}}</h2>
     <p *ngIf="user.isPrivate">( Private profile )</p>
     <p *ngIf="!user.isPrivate">( Public profile )</p>
-    <p *ngIf="(user.isFriend && !user.isRequested) || !user.isPrivate">{{user.bio}}</p>
+    <p *ngIf="(user.isFriend && !user.isRequested && !user.meBlockedYou && !user.youBlockedMe) || (!user.isPrivate && !user.meBlockedYou && !user.youBlockedMe)">{{user.bio}}</p>
+    <p *ngIf="user.youBlockedMe">{{user.name}} Blocked you</p>
     <div class="row">
       <div class="col-sm">
         <div class="row-sm">
@@ -21,15 +22,25 @@
         </div>
       </div>
       <div class="col-sm">
-        <form (ngSubmit)="onSubmitAdd()" *ngIf="!user.isFriend && !user.isRequested">
-          <button type="submit" class="btn btn-outline-success">Add Friend</button>
-        </form>
-        <form (ngSubmit)="onSubmitDelete()" *ngIf="user.isFriend && !user.isRequested">
-          <button type="submit" class="btn btn-outline-danger">Delete Friend</button>
-        </form>
-        <form (ngSubmit)="onSubmitDelete()" *ngIf="!user.isFriend && user.isRequested">
-          <button type="submit" class="btn btn-outline-secondary">Requested</button>
-        </form>
+        <div class="row-sm">
+          <form (ngSubmit)="onSubmitAdd()" *ngIf="!user.isFriend && !user.isRequested && !user.youBlockedMe && !user.meBlockedYou">
+            <button type="submit" class="btn btn-outline-success">Add Friend</button>
+          </form>
+          <form (ngSubmit)="onSubmitDelete()" *ngIf="user.isFriend && !user.isRequested && !user.youBlockedMe && !user.meBlockedYou">
+            <button type="submit" class="btn btn-outline-danger">Delete Friend</button>
+          </form>
+          <form (ngSubmit)="onSubmitDelete()" *ngIf="!user.isFriend && user.isRequested && !user.youBlockedMe && !user.meBlockedYou">
+            <button type="submit" class="btn btn-outline-secondary">Requested</button>
+          </form>
+        </div>
+        <div class="row-sm">
+          <form (ngSubmit)="onSubmitBlock()" *ngIf="!user.meBlockedYou && !user.youBlockedMe">
+            <button type="submit" class="btn btn-outline-secondary">Block</button>
+          </form>
+          <form (ngSubmit)="onSubmitUnblock()" *ngIf="user.meBlockedYou">
+            <button type="submit" class="btn btn-outline-secondary">Unblock</button>
+          </form>
+        </div>
       </div>
       <div class="col-sm">
         <div class="row-sm">
@@ -40,19 +51,19 @@
         </div>
       </div>
     </div>
-    <div *ngIf="(user.isFriend && !user.isRequested) || !user.isPrivate">
+    <div *ngIf="(user.isFriend && !user.isRequested && !user.meBlockedYou && !user.youBlockedMe) || (!user.isPrivate && !user.meBlockedYou && !user.youBlockedMe)">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item w-25">
           <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
-        </li>
-        <li class="nav-item w-25">
-          <a class="nav-link" id="liked-tab" data-toggle="tab" href="#liked" role="tab" aria-controls="lid" aria-selected="false">Liked Tweets</a>
         </li>
         <li class="nav-item w-25">
           <a class="nav-link" id="following-tab" data-toggle="tab" href="#following" role="tab" aria-controls="following" aria-selected="false">Following</a>
         </li>
         <li class="nav-item w-25">
           <a class="nav-link" id="followers-tab" data-toggle="tab" href="#followers" role="tab" aria-controls="followers" aria-selected="false">Followers</a>
+        </li>
+        <li class="nav-item w-25">
+            <a class="nav-link" id="future-tab" data-toggle="tab" href="#future" role="tab" aria-controls="future" aria-selected="false">In the future</a>
         </li>
       </ul>
     </div>
@@ -61,28 +72,51 @@
   <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
       <ul *ngFor="let obj of user.tweets">
+        &nbsp; &nbsp;
         <app-tweet-user [tweet]="obj" [name]="user.name"></app-tweet-user>
       </ul>
     </div>
-    <div class="tab-pane fade" id="liked" role="tabpanel" aria-labelledby="profile-tab">
-
-    </div>
     <div class="tab-pane fade" id="following" role="tabpanel" aria-labelledby="contact-tab">
+      &nbsp; &nbsp;
       <ul *ngFor="let obj of user.following">
-        <div class="text-center">
-          <img src="{{obj.imgURL}}" class="custom-control-inline" width="50">
-          <a href="/user/{{obj.username}}"><p class="custom-control-inline">{{obj.name}}</p></a>
+        <div class="row">
+          <div class="col-sm-3">
+          </div>
+          <div class="col-sm">
+            <div style="border-radius: 25px; border: 1px solid black; box-shadow: 5px 5px;">
+              <div class="text-center">
+                <img src="{{obj.imgURL}}" class="custom-control-inline" width="50">
+                <a href="/user/{{obj.username}}"><p class="custom-control-inline">{{obj.name}}</p></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+          </div>
         </div>
       </ul>
     </div>
     <div class="tab-pane fade" id="followers" role="tabpanel" aria-labelledby="contact-tab">
+      &nbsp; &nbsp;
       <ul *ngFor="let obj of user.followers">
-        <div class="text-center">
-          <img src="{{obj.imgURL}}" class="custom-control-inline" width="50">
-          <a href="/user/{{obj.username}}"><p class="custom-control-inline">{{obj.name}}</p></a>
+        <div class="row">
+          <div class="col-sm-3">
+          </div>
+          <div class="col-sm">
+            <div style="border-radius: 25px; border: 1px solid black; box-shadow: 5px 5px;">
+              <div class="text-center">
+                <img src="{{obj.imgURL}}" class="custom-control-inline" width="50">
+                <a href="/user/{{obj.username}}"><p class="custom-control-inline">{{obj.name}}</p></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+          </div>
         </div>
       </ul>
     </div>
+    <div class="tab-pane fade" id="future" role="tabpanel" aria-labelledby="contact-tab">
+
+      </div>
   </div>
 
 </div>

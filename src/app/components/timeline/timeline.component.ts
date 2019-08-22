@@ -4,7 +4,7 @@ import {JarwisService} from '../../services/jarwis.service';
 @Component({
   selector: 'app-timeline',
   templateUrl: './timeline.component.html',
-  styleUrls: ['./timeline.component.sass']
+  styleUrls: ['./timeline.component.scss']
 })
 export class TimelineComponent implements OnInit {
 

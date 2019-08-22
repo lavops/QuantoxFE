@@ -5,7 +5,7 @@ import {TimelineComponent} from '../timeline/timeline.component';
 @Component({
   selector: 'app-tweet-timeline',
   templateUrl: './tweet-timeline.component.html',
-  styleUrls: ['./tweet-timeline.component.sass']
+  styleUrls: ['./tweet-timeline.component.scss']
 })
 export class TweetTimelineComponent implements OnInit {
 
@@ -63,24 +63,11 @@ export class TweetTimelineComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.Jarwis.getComments(this.tweet.id).subscribe(
-      data => this.handleResponse(data),
-      error => this.handleError(error)
-    );
-
-    this.Jarwis.getLikes(this.tweet.id).subscribe(
-      data => this.handleGetLikesResponse(data),
-      error => this.handleError(error)
-    );
   }
 
   handleResponse(data) {
-    this.data.comments = data;
-  }
-
-  handleGetLikesResponse(data) {
-    this.data.likes = data.likes;
-    this.data.isLiked = data.isLiked;
+    this.tweet.countComments = data.length;
+    this.tweet.comments = data;
   }
 
   onSubmitLike() {
@@ -98,8 +85,8 @@ export class TweetTimelineComponent implements OnInit {
   }
 
   handleLikeResponse(data) {
-    this.data.likes = data.likes;
-    this.data.isLiked = data.isLiked;
+    this.tweet.countLikes = data.likes.length;
+    this.tweet.isLiked = data.isLiked;
   }
 
   handleError(error) {

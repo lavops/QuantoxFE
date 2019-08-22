@@ -6,7 +6,7 @@ import {ProfileComponent} from '../profile/profile.component';
 @Component({
   selector: 'app-post-tweet',
   templateUrl: './post-tweet.component.html',
-  styleUrls: ['./post-tweet.component.sass']
+  styleUrls: ['./post-tweet.component.scss']
 })
 export class PostTweetComponent implements OnInit {
 

@@ -5,7 +5,7 @@ import {Router} from '@angular/router';
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
-  styleUrls: ['./settings.component.sass']
+  styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent implements OnInit {
 
@@ -28,7 +28,7 @@ export class SettingsComponent implements OnInit {
   onSelectFile(event) {
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
-      console.log(event.target.files[0]);
+      // console.log(event.target.files[0]);
       reader.readAsDataURL(event.target.files[0]);
       reader.onload = (event: any) => {
         this.updateUser.image = event.target.result;

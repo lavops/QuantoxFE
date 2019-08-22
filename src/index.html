@@ -2,8 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>FE</title>
+  <title>MdbAngularFree</title>
   <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://js.pusher.com/5.0/pusher.min.js"></script>
@@ -12,6 +14,10 @@
 
       // Enable pusher logging - don't include this in production
       // Pusher.logToConsole = true;
+
+      me = localStorage.getItem('username');
+
+      Pusher.logToConsole = false;
 
       var pusher = new Pusher('c3bf3ca0e98e34c44306', {
           cluster: 'eu',
@@ -22,9 +28,28 @@
       channel.bind('my-event', function(data) {
           alert(JSON.stringify(data));
       });
+
       channel.bind('liked', function(data) {
-          alert(JSON.stringify(data));
+          if(me === data.ownerUsername && me != data.likerUsername) {
+              location.reload(true);
+              //alert(data.likerName + " liked your Tweet! Refresh your page!");
+          }
       });
+
+      channel.bind('followed', function(data) {
+          if(me === data.followedUsername) {
+              if(!data.isRequested) {
+                  location.reload(true);
+                  //alert(data.followerName + " Followed you! Refresh your page!");
+              }
+              else if(data.isRequested) {
+                  location.reload(true);
+                  //alert(data.followerName + " Requested follow! Refresh your page!");
+              }
+          }
+      });
+
+
   </script>
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

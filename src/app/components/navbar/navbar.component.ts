@@ -7,7 +7,7 @@ import {JarwisService} from '../../services/jarwis.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.sass']
+  styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
 
@@ -75,7 +75,6 @@ export class NavbarComponent implements OnInit {
   }
 
   onSearch(event) {
-    console.log(event.target.value);
     this.Jarwis.searchUsers(event.target.value).subscribe(
       data => this.users = data
     );

@@ -6,7 +6,7 @@ import {TimelineComponent} from '../timeline/timeline.component';
 @Component({
   selector: 'app-post-tweet-timeline',
   templateUrl: './post-tweet-timeline.component.html',
-  styleUrls: ['./post-tweet-timeline.component.sass']
+  styleUrls: ['./post-tweet-timeline.component.scss']
 })
 export class PostTweetTimelineComponent implements OnInit {
 

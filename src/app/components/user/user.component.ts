@@ -5,7 +5,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.sass']
+  styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
 
@@ -22,7 +22,9 @@ export class UserComponent implements OnInit {
     following : [],
     isRequested : null,
     imgURL : null,
-    liked: []
+    liked: [],
+    meBlockedYou : false,
+    youBlockedMe : false
   };
 
   public error = null;
@@ -49,6 +51,18 @@ export class UserComponent implements OnInit {
     );
   }
 
+  onSubmitBlock() {
+    this.Jarwis.blockFriend(this.user).subscribe(
+      data => this.handleResponse(data)
+    );
+  }
+
+  onSubmitUnblock() {
+    this.Jarwis.unblockFriend(this.user).subscribe(
+      data => this.handleResponse(data)
+    );
+  }
+
   ngOnInit() {
     if (this.me === this.routeName) {
       this.router.navigateByUrl('/profile');
@@ -72,6 +86,8 @@ export class UserComponent implements OnInit {
     this.user.following = data.following;
     this.user.isRequested = data.isRequested;
     this.user.imgURL = data.user.imgURL;
+    this.user.meBlockedYou = data.meBlockedYou;
+    this.user.youBlockedMe = data.youBlockedMe;
   }
 
   handleError(error) {

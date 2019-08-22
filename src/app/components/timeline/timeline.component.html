@@ -4,8 +4,17 @@
 </div>
 
 <div class="container justify-content-center" *ngIf="data.tweets != null">
-  <app-post-tweet-timeline></app-post-tweet-timeline>
+  <div class="row">
+    <div class="col-sm-3">
 
+    </div>
+    <div class="col-sm">
+      <app-post-tweet-timeline></app-post-tweet-timeline>
+    </div>
+    <div class="col-sm-3">
+
+    </div>
+  </div>
   <ul *ngFor="let obj of data.tweets">
     <app-tweet-timeline [tweet]="obj" [name]="obj.name"></app-tweet-timeline>
   </ul>

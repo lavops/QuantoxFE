@@ -1,16 +1,16 @@
 <div class="row">
-  <div class="col-sm">
+  <div class="col-sm-3">
     &nbsp;
   </div>
-  <div class="col-sm-7">
+  <div class="col-sm" style="border-radius: 25px; border: 1px solid black; box-shadow: 5px 5px;">
     <img src="{{tweet.imgURL}}" class="rounded" width="50" height="50">
     &nbsp;
-    <h5 class="custom-control-inline">{{name}}</h5>
+    <h6 class="custom-control-inline"><b>{{name}}</b></h6>
     <p class="custom-control-inline">@{{tweet.username}}</p>
-    <small class="custom-control-inline">{{tweet.created_at}}</small>
+    <small class="custom-control-inline">{{tweet.created_at | date : "dd.MM HH:mm"}}</small>
 
     <div class="dropdown custom-control-inline" *ngIf="tweet.user_id == me">
-      <button class="btn btn-danger dropdown-toggle text-right custom-control-inline" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <button class="btn dropdown-toggle text-right custom-control-inline" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -22,20 +22,20 @@
 
     <h5 class="offset-1">{{tweet.text}}</h5>
     <div class="offset-1">
-      {{data.likes.length}}
-      <form class="custom-control-inline" (ngSubmit)="onSubmitLike()" *ngIf="!data.isLiked">
-        <button type="submit" class="btn btn-success">Like</button>
+      {{tweet.countLikes}}
+      <form class="custom-control-inline" (ngSubmit)="onSubmitLike()" *ngIf="!tweet.isLiked">
+        <button type="submit" class="btn"><mdb-icon far icon="heart" size="2x"></mdb-icon></button>
       </form>
-      <form class="custom-control-inline" (ngSubmit)="onSubmitUnlike()" *ngIf="data.isLiked">
-        <button type="submit" class="btn btn-danger">Dislike</button>
+      <form class="custom-control-inline" (ngSubmit)="onSubmitUnlike()" *ngIf="tweet.isLiked">
+        <button type="submit" class="btn"><mdb-icon fas icon="heart" size="2x" class="cyan-text"></mdb-icon></button>
       </form>
-      {{data.comments.length}}
-      <button type="button" class="btn btn-primary" data-toggle="modal" [attr.data-target]="'#tweet' + tweet.id">
-        Comment
+      {{tweet.countComments}}
+      <button type="button" class="btn" data-toggle="modal" [attr.data-target]="'#tweet' + tweet.id">
+        <mdb-icon far icon="comments" size="2x"></mdb-icon>
       </button>
     </div>
   </div>
-  <div class="col-sm">
+  <div class="col-sm-3">
     &nbsp;
   </div>
 </div>
@@ -47,14 +47,15 @@
         <div class="modal-body">
           <input type="text" class="form-control" id="inputText" name="text" [(ngModel)]="comment.text" placeholder="What's happening?" required>
         </div>
-        <li *ngFor="let obj of data.comments">
+        <li class="list-unstyled" *ngFor="let obj of tweet.comments">
           <hr>
-          <img src="{{obj.imgURL}}" class="rounded" width="50" height="50">
-          <h5 class="custom-control-inline">{{obj.name}}</h5>
+          &nbsp; &nbsp;
+          <img src="{{obj.imgURL}}" class="rounded custom-control-inline" width="50" height="50">
+          <h6 class="custom-control-inline"><b>{{obj.name}}</b></h6>
           <p class="custom-control-inline">@{{obj.username}}</p>
-          <small class="custom-control-inline">{{obj.created_at}}</small>
+          <small class="custom-control-inline">{{obj.created_at | date : "dd.MM HH:mm"}}</small>
           <div *ngIf="obj.user_id == me" class="dropdown custom-control-inline">
-            <button class="btn btn-danger dropdown-toggle text-right custom-control-inline" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button class="btn dropdown-toggle text-right custom-control-inline" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">

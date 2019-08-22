@@ -1,29 +1,29 @@
-<nav class="navbar navbar-light bg-light">
+<nav class="navbar navbar-light">
   <form class="form-inline">
-    <a class="navbar-brand" routerLink="/">Twitter</a>
-    <a class="btn btn-info" routerLink="/timeline" *ngIf="loggedIn">
-      HOME
+    <a class="navbar-brand" routerLink="/"> <img src="assets/logo.png" width="45px"></a>
+    <a class="btn" routerLink="/timeline" *ngIf="loggedIn">
+      <mdb-icon fas icon="align-justify"></mdb-icon> Timeline
     </a>
   </form>
 
   <form class="form-inline">
 
-    <a class="btn btn-outline-success my-2 my-sm-0" routerLink="/login" *ngIf="!loggedIn">Login</a>
+    <a class="btn btn-outline-info my-2 my-sm-0" routerLink="/login" *ngIf="!loggedIn">Login</a>
     &nbsp;&nbsp;
-    <a class="btn btn-outline-danger my-2 my-sm-0" routerLink="/signup" *ngIf="!loggedIn">Sign up</a>
+    <a class="btn btn-outline-info my-2 my-sm-0" routerLink="/signup" *ngIf="!loggedIn">Sign up</a>
 
     <div class="dropdown" *ngIf="loggedIn">
-      <input type="text" placeholder="Search" size="20" (keyup)='onSearch($event)' class="dropdown-toggle" id="dropdownMenuButton5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <input type="text" placeholder="Search" size="20" (keyup)='onSearch($event)' class="dropdown-toggle form-control form-control-sm-10" id="dropdownMenuButton5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton5">
-        <li *ngFor="let obj of users">
-          <a href="/user/{{obj.username}}" class="list-unstyled"><small>{{obj.name}} - @ {{obj.username}}</small></a>
+        <li class="dropdown-item" *ngFor="let obj of users">
+          <a href="/user/{{obj.username}}" class="list-unstyled">&nbsp;<small>{{obj.name}} - @{{obj.username}}</small>&nbsp;</a>
         </li>
       </div>
     </div>
     &nbsp;
     <div class="dropdown" *ngIf="loggedIn">
-      <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Friends <span class="badge badge-light">{{notify.newFriends.length}}</span>
+      <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <mdb-icon fas icon="users"></mdb-icon> &nbsp; <span class="badge badge-light">{{notify.newFriends.length}}</span>
         <span class="sr-only">unread messages</span>
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -32,10 +32,10 @@
             <div class="row">
               <p><b>{{obj.name}}</b> Requested following</p>
               <form class="custom-control-inline" (ngSubmit)="acceptFollow(obj)">
-                <button type="submit" class="btn btn-success">Accept</button>
+                <button type="submit" class="btn"><mdb-icon far icon="check-circle" size="2x" class="cyan-text"></mdb-icon></button>
               </form>
               <form class="custom-control-inline" (ngSubmit)="declineFollow(obj)">
-                <button type="submit" class="btn btn-danger">Decline</button>
+                <button type="submit" class="btn"><mdb-icon far icon="times-circle" size="2x" class="red-text"></mdb-icon></button>
               </form>
             </div>
             <hr>
@@ -45,7 +45,7 @@
             <div class="row">
               <p><b>{{obj.name}}</b> Followed you</p>
               <form class="custom-control-inline" (ngSubmit)="dismissFollow(obj)">
-                <button type="submit" class="btn btn-danger">Dismiss</button>
+                <button type="submit" class="btn"><mdb-icon far icon="times-circle" size="2x" class="red-text"></mdb-icon></button>
               </form>
               <hr>
             </div>
@@ -56,8 +56,8 @@
     </div>
     &nbsp;
     <div class="dropdown" *ngIf="loggedIn">
-      <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Likes <span class="badge badge-light">{{notify.newLikes.length}}</span>
+      <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <mdb-icon far icon="thumbs-up"></mdb-icon> &nbsp; <span class="badge badge-light">{{notify.newLikes.length}}</span>
         <span class="sr-only">unread messages</span>
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
@@ -66,7 +66,7 @@
             <div class="row">
               <p><b>{{obj.name}}</b> Liked your tweet!</p>
               <form class="custom-control-inline" (ngSubmit)="dismissLike(obj)">
-                <button type="submit" class="btn btn-danger">Dismiss</button>
+                <button type="submit" class="btn"><mdb-icon far icon="times-circle" size="2x" class="red-text"></mdb-icon></button>
               </form>
             </div>
             <hr>
@@ -75,10 +75,10 @@
       </div>
     </div>
     &nbsp;
-    <a class="btn btn-success my-2 my-sm-0" routerLink="/profile" *ngIf="loggedIn">Profile</a>
+    <a class="btn btn-info my-2 my-sm-0" routerLink="/profile" *ngIf="loggedIn">Profile</a>
     &nbsp;&nbsp;
     <div class="dropdown" *ngIf="loggedIn">
-      <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Options
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
