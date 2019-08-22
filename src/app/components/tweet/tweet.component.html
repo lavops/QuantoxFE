@@ -7,7 +7,7 @@
     &nbsp;
     <h5 class="custom-control-inline">{{name}}</h5>
     <p class="custom-control-inline">@{{tweet.username}}</p>
-    <small class="custom-control-inline">{{tweet.created_at}}</small>
+    <small class="custom-control-inline">{{tweet.created_at | date : "dd.MM HH:mm"}}</small>
 
     <div class="dropdown custom-control-inline">
       <button class="btn btn-danger dropdown-toggle text-right custom-control-inline" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -52,7 +52,7 @@
           <img src="{{obj.imgURL}}" class="rounded" width="50" height="50">
           <h5 class="custom-control-inline">{{obj.name}}</h5>
           <p class="custom-control-inline">@{{obj.username}}</p>
-          <small class="custom-control-inline">{{obj.created_at}}</small>
+          <small class="custom-control-inline">{{obj.created_at | date : "dd.MM HH:mm"}}</small>
           <div *ngIf="obj.user_id == me" class="dropdown custom-control-inline">
             <button class="btn btn-danger dropdown-toggle text-right custom-control-inline" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 

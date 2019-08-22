@@ -75,7 +75,6 @@ export class NavbarComponent implements OnInit {
   }
 
   onSearch(event) {
-    console.log(event.target.value);
     this.Jarwis.searchUsers(event.target.value).subscribe(
       data => this.users = data
     );
